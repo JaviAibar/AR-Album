@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Menus_en-GB
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-GB
+  m_SharedData: {fileID: 11400000, guid: 8a2c7f3add8549e42a5800d66d947a6a, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 35565260800
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119627501568
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21928976502784
+    m_Localized: Select image folder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102934450458624
+    m_Localized: Select reference images folder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116817642835968
+    m_Localized: Select reference image folder?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116942867976192
+    m_Localized: The reference images folder is still default, would you like to
+      select a custom one? It is recommended because you can select references that
+      you already have at home or make a foto to an object (preferable flat) that
+      will be replaced afterwards. This folder can also be changed later.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119137277497344
+    m_Localized: Accept
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119151957561344
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1798943886987264
+    m_Localized: The images folder is still default, would you like to select a custom
+      one? It is recommended because you can enjoy your own pictures. This folder
+      can also be changed later.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1806572717789184
+    m_Localized: Return to default settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1813140121243648
+    m_Localized: Breaking animation
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

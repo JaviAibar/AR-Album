@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Menus_de-DE
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: de-DE
+  m_SharedData: {fileID: 11400000, guid: 8a2c7f3add8549e42a5800d66d947a6a, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 35565260800
+    m_Localized: Verlassen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119627501568
+    m_Localized: Abspannen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21928976502784
+    m_Localized: "Bildordner ausw\xE4hlen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102934450458624
+    m_Localized: "Referenzbildordner ausw\xE4hlen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116817642835968
+    m_Localized: "Referenzbildordner ausw\xE4hlen?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116942867976192
+    m_Localized: "Referenzbildordner ist noch Standard, m\xF6chten Sie einen Benutzerdefinierte
+      ausw\xE4hlen? Empfehlenswert, da Sie Referenzen ausw\xE4hlen k\xF6nnen, die
+      Sie bereits zu Hause haben, oder ein Foto zu einem Objekt (vorzugsweise flach)
+      machen, das sp\xE4ter ersetzt wird. Dieser Ordner kann auch sp\xE4ter ver\xE4ndern
+      sein."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119151957561344
+    m_Localized: Abbrechen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119137277497344
+    m_Localized: Akzeptieren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1798943886987264
+    m_Localized: "Der Bilderordner ist immer noch Standard, m\xF6chten Sie einen
+      benutzerdefinierten Ordner ausw\xE4hlen?  Empfehlenswert, da Sie Ihre eigenen
+      Bilder genie\xDFen k\xF6nnen. Dieser Ordner kann auch nachtr\xE4glich ge\xE4ndert
+      werden"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1806572717789184
+    m_Localized: "Zur\xFCck zu den Standardeinstellungen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1813140121243648
+    m_Localized: Animation von Bruch
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

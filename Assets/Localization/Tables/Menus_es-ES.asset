@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Menus_es-ES
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: es-ES
+  m_SharedData: {fileID: 11400000, guid: 8a2c7f3add8549e42a5800d66d947a6a, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 35565260800
+    m_Localized: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119627501568
+    m_Localized: "Cr\xE9ditos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21928976502784
+    m_Localized: "Seleccionar carpeta de im\xE1genes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102934450458624
+    m_Localized: "Seleccionar carpeta de referencia de im\xE1genes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116817642835968
+    m_Localized: "\xBFSeleccionar carpeta de referencia de im\xE1genes?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116942867976192
+    m_Localized: "La carpeta de im\xE1genes de referencia sigue siendo la predeterminada,
+      \xBFLe gustar\xEDa seleccionar una personalizada? Es recomendable porque puede
+      seleccionar referencias que ya tiene en casa o hacer una foto a un objeto (preferiblemente
+      plano) que luego ser\xE1 reemplazado. Esta carpeta se puede cambiar tambi\xE9n
+      m\xE1s adelante."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119137277497344
+    m_Localized: Aceptar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119151957561344
+    m_Localized: Cancelar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1798943886987264
+    m_Localized: "La carpeta de im\xE1genes sigue siendo la predeterminada, \xBFle
+      gustar\xEDa seleccionar una personalizada? Se recomienda porque puede disfrutar
+      de sus propias im\xE1genes. Esta carpeta tambi\xE9n se puede cambiar m\xE1s
+      tarde."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1806572717789184
+    m_Localized: "Volver a la configuraci\xF3n predeterminada"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1813140121243648
+    m_Localized: "Animaci\xF3n de rotura"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

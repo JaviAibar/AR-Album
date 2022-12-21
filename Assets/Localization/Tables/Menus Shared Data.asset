@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Menus Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Menus
+  m_TableCollectionNameGuidString: 8a2c7f3add8549e42a5800d66d947a6a
+  m_Entries:
+  - m_Id: 35565260800
+    m_Key: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119627501568
+    m_Key: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21928976502784
+    m_Key: Select Pic Folders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102934450458624
+    m_Key: Select Ref Folder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116817642835968
+    m_Key: Select reference image folder?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116942867976192
+    m_Key: Select reference image folder body
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119137277497344
+    m_Key: Accept
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119151957561344
+    m_Key: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1798943886987264
+    m_Key: Select pic folder body
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1806572717789184
+    m_Key: Reset defaults
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1813140121243648
+    m_Key: Breaking Anim
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5249694302497931313
+  references:
+    version: 2
+    RefIds:
+    - rid: 5249694302497931313
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1670412597624
