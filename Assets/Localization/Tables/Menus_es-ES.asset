@@ -39,11 +39,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 116942867976192
-    m_Localized: "La carpeta de im\xE1genes de referencia sigue siendo la predeterminada,
-      \xBFLe gustar\xEDa seleccionar una personalizada? Es recomendable porque puede
-      seleccionar referencias que ya tiene en casa o hacer una foto a un objeto (preferiblemente
-      plano) que luego ser\xE1 reemplazado. Esta carpeta se puede cambiar tambi\xE9n
-      m\xE1s adelante."
+    m_Localized: "La carpeta de im\xE1genes de referencia a\xFAn no est\xE1 definida.
+      \xBFLe gustar\xEDa seleccionar una carpeta personalizada? Deber\xEDa hacerlo
+      ya que la aplicaci\xF3n necesita una referencia para colocar sus im\xE1genes.
+      Puede elegir referencias que ya tenga en casa o tomar una foto de un objeto
+      (preferiblemente plano) que luego ser\xE1 reemplazado. Esta carpeta tambi\xE9n
+      se puede cambiar m\xE1s adelante."
     m_Metadata:
       m_Items: []
   - m_Id: 119137277497344
@@ -67,6 +68,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1813140121243648
     m_Localized: "Animaci\xF3n de rotura"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5164808852258816
+    m_Localized: Activar modo debug
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5165801572712448
+    m_Localized: "Eliminar informaci\xF3n de tama\xF1o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5166642786516992
+    m_Localized: "Atr\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5166688449904640
+    m_Localized: Siguiente
     m_Metadata:
       m_Items: []
   references:

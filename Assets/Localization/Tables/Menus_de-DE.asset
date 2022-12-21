@@ -39,11 +39,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 116942867976192
-    m_Localized: "Referenzbildordner ist noch Standard, m\xF6chten Sie einen Benutzerdefinierte
-      ausw\xE4hlen? Empfehlenswert, da Sie Referenzen ausw\xE4hlen k\xF6nnen, die
-      Sie bereits zu Hause haben, oder ein Foto zu einem Objekt (vorzugsweise flach)
-      machen, das sp\xE4ter ersetzt wird. Dieser Ordner kann auch sp\xE4ter ver\xE4ndern
-      sein."
+    m_Localized: "Der Ordner f\xFCr Referenzbilder ist noch nicht definiert. M\xF6chten
+      Sie einen benutzerdefinierten Ordner ausw\xE4hlen? Das sollten Sie tun, da
+      die App eine Referenz ben\xF6tigt, um Ihre Bilder zu platzieren. Sie k\xF6nnen
+      Referenzen ausw\xE4hlen, die Sie bereits zu Hause haben, oder ein Foto von
+      einem Objekt (vorzugsweise flach) machen, das sp\xE4ter ersetzt wird. Dieser
+      Ordner kann auch sp\xE4ter ge\xE4ndert werden."
     m_Metadata:
       m_Items: []
   - m_Id: 119151957561344
@@ -67,6 +68,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1813140121243648
     m_Localized: Animation von Bruch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5164808852258816
+    m_Localized: Debug-Modus aktivieren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5165801572712448
+    m_Localized: "Gr\xF6\xDFenangaben l\xF6schen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5166642786516992
+    m_Localized: "Zur\xFCck"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5166688449904640
+    m_Localized: "N\xE4chste"
     m_Metadata:
       m_Items: []
   references:

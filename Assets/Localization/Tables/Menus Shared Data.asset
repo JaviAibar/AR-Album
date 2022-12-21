@@ -59,6 +59,22 @@ MonoBehaviour:
     m_Key: Breaking Anim
     m_Metadata:
       m_Items: []
+  - m_Id: 5164808852258816
+    m_Key: activate debug
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5165801572712448
+    m_Key: Remove Size Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5166642786516992
+    m_Key: back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5166688449904640
+    m_Key: next
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
