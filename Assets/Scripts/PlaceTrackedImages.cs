@@ -157,6 +157,7 @@ public class PlaceTrackedImages : MonoBehaviour
                 /*if (string.Compare(curPrefab.name, imageName, StringComparison.OrdinalIgnoreCase) == 0
                     && !_instantiatedPrefabs.ContainsKey(imageName))
                 {*/
+                if (!_instantiatedPrefabs.ContainsKey(imageName)) { 
                     // Instantiate the prefab, parenting it to the ARTrackedImage
                     var newPrefab = Instantiate(curPrefab, trackedImage.transform);
                    // print($"Instantiated {curPrefab.name}");
@@ -168,8 +169,8 @@ public class PlaceTrackedImages : MonoBehaviour
                     print($"Retrieved img localScale from memo to ({localScale.x}, {localScale.y}, 1)");*/
 
                     _instantiatedPrefabs[imageName] = newPrefab;
-               // }
-            //   print($"ADDED _trackedImagesManager.trackables.count {_trackedImagesManager.trackables.count}");
+                }
+                //   print($"ADDED _trackedImagesManager.trackables.count {_trackedImagesManager.trackables.count}");
             }
         }
 

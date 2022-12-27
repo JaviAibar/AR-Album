@@ -66,7 +66,6 @@ public class SettingsManager : MonoBehaviour
                 selected = i;
             options.Add(new TMP_Dropdown.OptionData(locale.name.Split(' ')[0]));
         }
-
         langDropdown.options = options;
 
         langDropdown.value = selected;

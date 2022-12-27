@@ -34,19 +34,19 @@ public class AlbumController : MonoBehaviour
     [ContextMenu("NextSprite")]
     public void NextSprite()
     {
+        CheckIsLastSprite();
         if (IsLastSprite) return;
         spriteIndex++;
         UpdateSprite();
-        CheckIsLastSprite();
     }
 
     [ContextMenu("PrevSprite")]
     public void PrevSprite()
     {
+        CheckIsFirstSprite();
         if (IsFirstSprite) return;
         spriteIndex--;
         UpdateSprite();
-        CheckIsFirstSprite();
     }
 
     public void CheckIsFirstSprite()
