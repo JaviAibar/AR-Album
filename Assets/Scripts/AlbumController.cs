@@ -5,10 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class AlbumController : MonoBehaviour
 {
     private string[] spritesPaths;
+    private List<Sprite> sprites;
     public SpriteRenderer spriteRenderer;
     public Button prevButton;
     public Button nextButton;
@@ -23,8 +26,9 @@ public class AlbumController : MonoBehaviour
     {
         BetterStreamingAssets.Initialize();
         _maskAnimation = GetComponentInChildren<MaskAnimation>();
+        sprites = new List<Sprite>();
         LoadImageFolder();
-        spriteIndex = Random.Range(0, spritesPaths.Length);
+        spriteIndex = 0; //Random.Range(0, spritesPaths.Length);
         UpdateSprite();
         CheckButtonsActive();
     }
@@ -36,8 +40,8 @@ public class AlbumController : MonoBehaviour
     {
         if (IsLastSprite) return;
         spriteIndex++;
-        UpdateSprite();
         CheckIsLastSprite();
+        UpdateSprite();
     }
 
     [ContextMenu("PrevSprite")]
@@ -45,8 +49,8 @@ public class AlbumController : MonoBehaviour
     {
         if (IsFirstSprite) return;
         spriteIndex--;
-        UpdateSprite();
         CheckIsFirstSprite();
+        UpdateSprite();
     }
 
     public void CheckIsFirstSprite()
@@ -75,8 +79,8 @@ public class AlbumController : MonoBehaviour
     public void UpdateSprite()
     {
         print($"Sprite renderere {spriteRenderer}");
-        print($"spritesPaths[spriteIndex] {spritesPaths[spriteIndex]}");
-        spriteRenderer.sprite = GetSpritefromImage(spritesPaths[spriteIndex]);
+        print($"spritesPaths[spriteIndex] {sprites[spriteIndex].name}");
+        spriteRenderer.sprite = sprites[spriteIndex]; //GetSpritefromImage(spritesPaths[spriteIndex]);
         _maskAnimation.UpdateSpriteSize(spriteRenderer.sprite);
         /*  if (AdjustPictureSizeToReference)
           {
@@ -150,8 +154,16 @@ public class AlbumController : MonoBehaviour
         foreach (var spritesPath in spritesPaths)
         {
             text += spritesPath + ", ";
+            StartCoroutine(CallGetSpriteFromImage(spritesPath));
         }
 
         print(text);
+    }
+
+    public IEnumerator CallGetSpriteFromImage(string imagePath)
+    {
+        print($"[CallGetSpriteFromImage] {imagePath}");
+        sprites.Add(GetSpritefromImage(imagePath));
+        yield return null;
     }
 }
