@@ -1,17 +1,14 @@
 using System;
 using System.IO;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
-using TMPro;
-using System.Collections;
-using System.Collections.Generic;
 
 public class AlbumController : MonoBehaviour
 {
     private string[] spritesPaths;
-    private List<Sprite> sprites;
+    private Sprite[] sprites;
     public SpriteRenderer spriteRenderer;
     public Button prevButton;
     public Button nextButton;
@@ -26,14 +23,17 @@ public class AlbumController : MonoBehaviour
     {
         BetterStreamingAssets.Initialize();
         _maskAnimation = GetComponentInChildren<MaskAnimation>();
-        sprites = new List<Sprite>();
-        LoadImageFolder();
+        /*sprites = new List<Sprite>();*/
+
+        LoadPathsImageFolder();
+
+        sprites = new Sprite[imagesPath.Length];
         spriteIndex = 0; //Random.Range(0, spritesPaths.Length);
         UpdateSprite();
         CheckButtonsActive();
     }
 
-    
+
 
     [ContextMenu("NextSprite")]
     public void NextSprite()
@@ -55,15 +55,12 @@ public class AlbumController : MonoBehaviour
 
     public void CheckIsFirstSprite()
     {
-      // print($"Setting prev active to {!IsFirstSprite} bc sprite index {spriteIndex} != 0");
         prevButton.gameObject.SetActive(!IsFirstSprite);
         nextButton.gameObject.SetActive(true);
     }
 
     public void CheckIsLastSprite()
     {
-        //print($"Setting next active to {!IsLastSprite} bc sprite index {spriteIndex} != {spritesPaths.Length - 1}");
-        //print($"TOTAL IMAGES: {spritesPaths.Length}");
         nextButton.gameObject.SetActive(!IsLastSprite);
         prevButton.gameObject.SetActive(true);
 
@@ -79,8 +76,8 @@ public class AlbumController : MonoBehaviour
     public void UpdateSprite()
     {
         print($"Sprite renderere {spriteRenderer}");
+        spriteRenderer.sprite = LoadCurrentImage();//sprites[spriteIndex]; //GetSpritefromImage(spritesPaths[spriteIndex]);
         print($"spritesPaths[spriteIndex] {sprites[spriteIndex].name}");
-        spriteRenderer.sprite = sprites[spriteIndex]; //GetSpritefromImage(spritesPaths[spriteIndex]);
         _maskAnimation.UpdateSpriteSize(spriteRenderer.sprite);
         /*  if (AdjustPictureSizeToReference)
           {
@@ -106,10 +103,10 @@ public class AlbumController : MonoBehaviour
 
     }
 
-    
+
 
     // CREDIT: https://forum.unity.com/threads/solved-loading-image-from-streamingassets.717869/#post-6622780
-    private Sprite GetSpritefromImage(string imgPath)
+    private Sprite LoadSpritefromPath(string imgPath)
     {
         //Converts desired path into byte array
         byte[] pngBytes = Array.Empty<byte>();
@@ -124,11 +121,11 @@ public class AlbumController : MonoBehaviour
         //Creates a new Sprite based on the Texture2D
         Sprite fromTex = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f),
             100.0f);
-
+        print($"Tex: w {fromTex.texture.width} x h {fromTex.texture.height}");
         return fromTex;
     }
 
-    public void LoadImageFolder()
+    public void LoadPathsImageFolder()
     {
         string supportedExtensions =
             "*.jpg,*.gif,*.png,*.bmp,*.jpe,*.jpeg,*.wmf,*.emf,*.xbm,*.ico,*.eps,*.tif,*.tiff,*.g01,*.g02,*.g03,*.g04,*.g05,*.g06,*.g07,*.g08";
@@ -151,19 +148,29 @@ public class AlbumController : MonoBehaviour
             print(fileInfo);
         }*/
         string text = $"Found {spritesPaths.Length} sprites\n";
-        foreach (var spritesPath in spritesPaths)
+        /*foreach (var spritesPath in spritesPaths)
         {
             text += spritesPath + ", ";
             StartCoroutine(CallGetSpriteFromImage(spritesPath));
-        }
-
+        }*/
         print(text);
     }
 
-    public IEnumerator CallGetSpriteFromImage(string imagePath)
+    private Sprite LoadCurrentImage()
+    {
+        if (sprites[spriteIndex] == null)
+        {
+            var spritePath = spritesPaths[spriteIndex];
+            print($"Loading image at position {spriteIndex}, path: {spritePath}");
+            sprites[spriteIndex] = LoadSpritefromPath(spritePath);
+        }
+        return sprites[spriteIndex];
+    }
+
+    /*public IEnumerator CallGetSpriteFromImage(string imagePath)
     {
         print($"[CallGetSpriteFromImage] {imagePath}");
         sprites.Add(GetSpritefromImage(imagePath));
         yield return null;
-    }
+    }*/
 }

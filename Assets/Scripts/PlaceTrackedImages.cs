@@ -17,7 +17,7 @@ public class PlaceTrackedImages : MonoBehaviour
     private ARTrackedImageManager _trackedImagesManager;
 
     private ARGestureInteractor _gestureInteractor;
-//    public XRReferenceImageLibrary imageLibrary;
+    //    public XRReferenceImageLibrary imageLibrary;
     private string referenceImagesPath;
 
     // public TMPro.TMP_Text debug;
@@ -27,7 +27,7 @@ public class PlaceTrackedImages : MonoBehaviour
     public GameObject[] arPrefabs;
 
     private readonly Dictionary<string, GameObject> _instantiatedPrefabs = new Dictionary<string, GameObject>();
-    
+
 
     void OnEnable()
     {
@@ -40,7 +40,7 @@ public class PlaceTrackedImages : MonoBehaviour
     }
 
     private IEnumerator Start()
-    
+
     {
         BetterStreamingAssets.Initialize();
         _trackedImagesManager = GetComponent<ARTrackedImageManager>();
@@ -52,25 +52,25 @@ public class PlaceTrackedImages : MonoBehaviour
 
     public void LoadReferenceImages()
     {
-       // print("Trying to load");
+        // print("Trying to load");
         string supportedExtensions =
             "*.jpg,*.gif,*.png,*.bmp,*.jpe,*.jpeg,*.wmf,*.emf,*.xbm,*.ico,*.eps,*.tif,*.tiff,*.g01,*.g02,*.g03,*.g04,*.g05,*.g06,*.g07,*.g08";
         referenceImagesPath = PlayerPrefs.GetString("ReferencesFolder", "Default");
         string[] paths = Array.Empty<string>();
         // _trackedImagesManager.enabled = false;
-      //  print($"Path is {referenceImagesPath}");
+        //  print($"Path is {referenceImagesPath}");
         if (referenceImagesPath == "Default")
         {
-           // print("Searching in ImageReferences");
+            // print("Searching in ImageReferences");
             paths = BetterStreamingAssets.GetFiles("ImageReferences", "*.*", SearchOption.AllDirectories)
                 .Where(s => supportedExtensions.Contains(Path.GetExtension(s).ToLower())).ToArray();
             string filesFound = $"Found {paths.Length} files:";
             foreach (var s in paths)
             {
-               filesFound += $"\t{s}";
+                filesFound += $"\t{s}";
             }
-           // print(filesFound);
-           // print($"Can I Add images? {_trackedImagesManager.descriptor.supportsMutableLibrary}");
+            // print(filesFound);
+            // print($"Can I Add images? {_trackedImagesManager.descriptor.supportsMutableLibrary}");
         }
 
         else
@@ -84,7 +84,7 @@ public class PlaceTrackedImages : MonoBehaviour
                 {
                     filesFound += $"\t{s}";
                 }
-              //  print(filesFound);
+                //  print(filesFound);
             }
             catch (System.Exception e)
             {
@@ -111,12 +111,12 @@ public class PlaceTrackedImages : MonoBehaviour
             mutableRuntimeReferenceImageLibrary.ScheduleAddImageWithValidationJob(tex,
                 imgPath, 0.1f);
         JobHandle jobHandle = addReferenceImageJobState.jobHandle;
-    //    print("Job started!");
+        //    print("Job started!");
 
 
         while (!jobHandle.IsCompleted)
         {
-      //      print("Job Running...");
+            //      print("Job Running...");
             yield return null;
         }
 
@@ -135,7 +135,7 @@ public class PlaceTrackedImages : MonoBehaviour
         print($"_trackedImagesManager.referenceLibrary[0].name ({_trackedImagesManager.referenceLibrary[0].name})");
         print($"_trackedImagesManager.referenceLibrary[0].size.x ({_trackedImagesManager.referenceLibrary[0].size.x})");
         print($"_trackedImagesManager.referenceLibrary[0].size.y ({_trackedImagesManager.referenceLibrary[0].size.y})");
-       // print($"trackImageManager.trackedImagePrefab.name ({_trackedImagesManager.trackedImagePrefab.name})"); Not interesting bc using arPrefabs array instead
+        // print($"trackImageManager.trackedImagePrefab.name ({_trackedImagesManager.trackedImagePrefab.name})"); Not interesting bc using arPrefabs array instead
 
     }
 
@@ -150,17 +150,18 @@ public class PlaceTrackedImages : MonoBehaviour
             //    eventArgs.added.ToList().ForEach(e => debug.text += e.referenceImage.name);
             // Get the name of the reference image
             var imageName = trackedImage.referenceImage.name;
-         //   print($"trackedImage.referenceImage.size: {trackedImage.referenceImage.size.x} x {trackedImage.referenceImage.size.y}");
+            //   print($"trackedImage.referenceImage.size: {trackedImage.referenceImage.size.x} x {trackedImage.referenceImage.size.y}");
             foreach (var curPrefab in arPrefabs)
             {
                 // Removed some code to simplify the app, not interested in differente prefab instantiation
                 /*if (string.Compare(curPrefab.name, imageName, StringComparison.OrdinalIgnoreCase) == 0
                     && !_instantiatedPrefabs.ContainsKey(imageName))
                 {*/
-                if (!_instantiatedPrefabs.ContainsKey(imageName)) { 
+                if (!_instantiatedPrefabs.ContainsKey(imageName))
+                {
                     // Instantiate the prefab, parenting it to the ARTrackedImage
                     var newPrefab = Instantiate(curPrefab, trackedImage.transform);
-                   // print($"Instantiated {curPrefab.name}");
+                    // print($"Instantiated {curPrefab.name}");
                     // Add the created prefab to our array
                     //newPrefab.transform.localScale *= PlayerPrefs.GetFloat("PrefabScale", 1);
                     /*Vector3 localScale = new Vector3(PlayerPrefs.GetFloat("PrefabScaleX", 0.1f),
@@ -182,7 +183,7 @@ public class PlaceTrackedImages : MonoBehaviour
             //     eventArgs.updated.ToList().ForEach(e => debug.text += e.referenceImage.name);
             _instantiatedPrefabs[trackedImage.referenceImage.name]
                 .SetActive(trackedImage.trackingState == TrackingState.Tracking);
-          //  print($"UPDATED _trackedImagesManager.trackables.count {_trackedImagesManager.trackables.count}");
+            //  print($"UPDATED _trackedImagesManager.trackables.count {_trackedImagesManager.trackables.count}");
         }
 
         // If the AR subsystem has given up looking for a tracked image
@@ -191,8 +192,8 @@ public class PlaceTrackedImages : MonoBehaviour
             Destroy(_instantiatedPrefabs[trackedImage.referenceImage.name]);
             _instantiatedPrefabs.Remove(trackedImage.referenceImage.name);
         }
-        
-        
+
+
     }
 
     private Texture2D GetTexturefromPath(string imgPath)

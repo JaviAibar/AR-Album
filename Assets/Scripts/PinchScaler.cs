@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PinchScaler : MonoBehaviour
@@ -43,13 +41,13 @@ public class PinchScaler : MonoBehaviour
         {
             initialDistance = Vector2.Distance(touchZero.position, touchOne.position);
             initialScale = targetTransform.localScale;
-           // print($"Pantalla pulsada, initial scale: {initialScale} (touchZ {touchZero.position}, touchO {touchOne.position}");
+            // print($"Pantalla pulsada, initial scale: {initialScale} (touchZ {touchZero.position}, touchO {touchOne.position}");
         }
         else // fingers moved
         {
             currentDistance = Vector2.Distance(touchZero.position, touchOne.position);
             if (Mathf.Abs(initialDistance - currentDistance) < 0.01f || Mathf.Approximately(initialDistance, 0)) return;
-        factor = currentDistance / initialDistance;
+            factor = currentDistance / initialDistance;
             targetTransform.localScale = initialScale * IntensifyBySensibility(factor);
             targetTransform.localScale = ClampVector3(targetTransform.localScale);
         }

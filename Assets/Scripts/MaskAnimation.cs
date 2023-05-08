@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MaskAnimation : MonoBehaviour
@@ -29,7 +26,7 @@ public class MaskAnimation : MonoBehaviour
     {
         if (!enabled) return;
         //  UpdateSize(localScale);
-      //  print($"Breaking anim is set to {BreakingEffectOn}");
+        //  print($"Breaking anim is set to {BreakingEffectOn}");
         if (!BreakingEffectOn)
         {
             mask.sprite = sprites[^1];

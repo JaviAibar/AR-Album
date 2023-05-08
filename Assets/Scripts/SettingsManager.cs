@@ -1,10 +1,10 @@
+using SimpleFileBrowser;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
-using SimpleFileBrowser;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
@@ -34,7 +34,7 @@ public class SettingsManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("BreakingAnimation", Convert.ToInt32(value));
     }
-    
+
     public void Quit()
     {
         Application.Quit();
@@ -91,7 +91,7 @@ public class SettingsManager : MonoBehaviour
     {
         StartCoroutine(ShowLoadPicDialogCoroutine());
     }
-    
+
     public void ResetToDefaults()
     {
         PlayerPrefs.DeleteKey("ReferencesFolder");
@@ -100,11 +100,12 @@ public class SettingsManager : MonoBehaviour
         print("Removed memo of folders (refs and picts) and BreakingAnimation");
         RemoveSizeKeys();
     }
-    
-    public void RemoveSizeKeys() {
+
+    public void RemoveSizeKeys()
+    {
         PlayerPrefs.DeleteKey("LocalScale");
         print("Removed LocalScale");
-        
+
     }
 
     IEnumerator ShowLoadRefDialogCoroutine()
@@ -115,7 +116,7 @@ public class SettingsManager : MonoBehaviour
         // Title: "Load File", Submit button text: "Load"
         yield return FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.Folders, false, null, null,
             "Load Reference Image Folder", "Load");
-        
+
         if (FileBrowser.Success)
         {
             // Print paths of the selected files (FileBrowser.Result) (null, if FileBrowser.Success is false)

@@ -25,7 +25,7 @@ public class Redirector : MonoBehaviour
     {
         print("Hello World!");
     }
-    
+
     [ContextMenu("Clear Consoles")]
     public void ClearConsole()
     {
