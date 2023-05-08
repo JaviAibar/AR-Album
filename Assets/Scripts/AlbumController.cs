@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -72,7 +74,6 @@ public class AlbumController : MonoBehaviour
         CheckIsLastSprite();
     }
 
-    // TODO: Cache images
     public void UpdateSprite()
     {
         print($"Sprite renderere {spriteRenderer}");
@@ -125,6 +126,7 @@ public class AlbumController : MonoBehaviour
         return fromTex;
     }
 
+    // TODO: Updates when images folder changed?
     public void LoadPathsImageFolder()
     {
         string supportedExtensions =
@@ -163,8 +165,45 @@ public class AlbumController : MonoBehaviour
             var spritePath = spritesPaths[spriteIndex];
             print($"Loading image at position {spriteIndex}, path: {spritePath}");
             sprites[spriteIndex] = LoadSpritefromPath(spritePath);
+            LoadTheRestOfImagesAsync();
         }
         return sprites[spriteIndex];
+    }
+
+    private async void LoadTheRestOfImagesAsync()
+    {
+        List<Task> tasks = new List<Task>();
+        for (uint i = 0; i < sprites.Length; i++)
+        {
+            if (i == spriteIndex) continue;
+            tasks.Add(LoadImageAsync(i));
+        }
+        await Task.WhenAll(tasks);
+    }
+
+    private async Task LoadImageAsync(uint id)
+    {
+        Sprite s = await LoadSpritefromPathAsync(spritesPaths[id]);
+        sprites[id] = s;
+    }
+
+    private async Task<Sprite> LoadSpritefromPathAsync(string imgPath)
+    {
+        //Converts desired path into byte array
+        byte[] pngBytes = Array.Empty<byte>();
+        //Converts desired path into byte array
+        if (imagesPath == "Default") pngBytes = await BetterStreamingAssets.ReadAllBytesAsync(imgPath);
+        else pngBytes = await File.ReadAllBytesAsync(imgPath);
+
+        //Creates texture and loads byte array data to create image
+        Texture2D tex = new Texture2D(2, 2);
+        tex.LoadImage(pngBytes);
+
+        //Creates a new Sprite based on the Texture2D
+        Sprite fromTex = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f),
+            100.0f);
+        print($"Tex: w {fromTex.texture.width} x h {fromTex.texture.height}");
+        return fromTex;
     }
 
     /*public IEnumerator CallGetSpriteFromImage(string imagePath)

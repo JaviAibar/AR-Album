@@ -135,6 +135,16 @@ public static class BetterStreamingAssets
         return BetterStreamingAssetsImp.ReadAllBytes(path);
     }
 
+    public async static System.Threading.Tasks.Task<byte[]> ReadAllBytesAsync(string path)
+    {
+        if (path == null)
+            throw new ArgumentNullException("path");
+        if (path.Length == 0)
+            throw new ArgumentException("Empty path", "path");
+
+        return await BetterStreamingAssetsImp.ReadAllBytesAsync(path);
+    }
+
     public static string[] GetFiles(string path, string searchPattern, SearchOption searchOption)
     {
         return BetterStreamingAssetsImp.GetFiles(path, searchPattern, searchOption);
@@ -215,6 +225,14 @@ public static class BetterStreamingAssets
                 return ApkImpl.ReadAllBytes(path);
             else
                 return LooseFilesImpl.ReadAllBytes(path);
+        }
+
+        internal async static System.Threading.Tasks.Task<byte[]> ReadAllBytesAsync(string path)
+        {
+            if (ApkMode)
+                return await ApkImpl.ReadAllBytesAsync(path);
+            else
+                return await LooseFilesImpl.ReadAllBytesAsync(path);
         }
 
         internal static string[] GetFiles(string path, string searchPattern, SearchOption searchOption)
@@ -303,6 +321,17 @@ public static class BetterStreamingAssets
 
             return File.ReadAllBytes(info.readPath);
         }
+
+        public async static System.Threading.Tasks.Task<byte[]> ReadAllBytesAsync(string path)
+        {
+            ReadInfo info;
+
+            if (!TryGetInfo(path, out info))
+                ThrowFileNotFound(path);
+
+            return await File.ReadAllBytesAsync(info.readPath);
+        }
+
 
         public static System.IO.Stream OpenRead(string path)
         {
@@ -486,6 +515,41 @@ public static class BetterStreamingAssets
                 {
                     int num = fileStream.Read(buffer, offset, count);
                     if ( num == 0 )
+                        throw new EndOfStreamException();
+                    offset += num;
+                    count -= num;
+                }
+            }
+
+            return buffer;
+        }
+
+        public static async System.Threading.Tasks.Task<byte[]> ReadAllBytesAsync(string path)
+        {
+            ReadInfo info;
+            if (!TryGetInfo(path, out info))
+                ThrowFileNotFound(path);
+
+            byte[] buffer;
+            using (var fileStream = File.OpenRead(info.readPath))
+            {
+                if (info.offset != 0)
+                {
+                    if (fileStream.Seek(info.offset, SeekOrigin.Begin) != info.offset)
+                        throw new IOException();
+                }
+
+                if (info.size > (long)int.MaxValue)
+                    throw new IOException();
+
+                int count = (int)info.size;
+                int offset = 0;
+
+                buffer = new byte[count];
+                while (count > 0)
+                {
+                    int num = await fileStream.ReadAsync(buffer, offset, count);
+                    if (num == 0)
                         throw new EndOfStreamException();
                     offset += num;
                     count -= num;
