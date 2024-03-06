@@ -19,42 +19,33 @@ public class SettingsManager : MonoBehaviour
     public bool IsDefaultRefImgs => PlayerPrefs.GetString("ReferencesFolder", "Default") == "Default";
     public bool IsDefaultImgs => PlayerPrefs.GetString("PicturesFolder", "Default") == "Default";
 
-    private void OnEnable()
-    {
-        print("Activado el listener");
-        breakingAnimationToggle.onValueChanged.AddListener(breakingAnimationToggleChanged);
-    }
-
     private void OnDisable()
     {
-        breakingAnimationToggle.onValueChanged.RemoveListener(breakingAnimationToggleChanged);
+        breakingAnimationToggle.onValueChanged.RemoveListener(BreakingAnimationToggleChanged);
     }
-
-    public void breakingAnimationToggleChanged(bool value)
-    {
-        PlayerPrefs.SetInt("BreakingAnimation", Convert.ToInt32(value));
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
-    }
-
-    public void SwitchVisibility()
-    {
-        menu.SetActive(!menu.activeSelf);
-    }
-
-    public void SwitchDebug()
-    {
-        debug.SetActive(!debug.activeSelf);
-    }
-
     IEnumerator Start()
     {
-        OnEnable();
+        // On Start and not OnEnable because it would still be null
+        breakingAnimationToggle.onValueChanged.AddListener(BreakingAnimationToggleChanged);
+        LanguageInitialization();
+        ActivateInitializationWindows();
+        breakingAnimationToggle.isOn = PlayerPrefs.GetInt("BreakingAnimation", 0) == 1;
+        yield return new WaitForSeconds(2);
+        placeTrackedImages = GetComponent<PlaceTrackedImages>();
+        print($"Place track: {placeTrackedImages}");
+    }
+
+    private void ActivateInitializationWindows()
+    {
+        selectRefImgsWindow.SetActive(IsDefaultRefImgs);
+        selectImgsWindow.SetActive(IsDefaultImgs);
+    }
+
+    private IEnumerator LanguageInitialization()
+    {
         // Wait for the localization system to initialize
         yield return LocalizationSettings.InitializationOperation;
+
         // Generate list of available Locales
         var options = new List<TMP_Dropdown.OptionData>();
         int selected = 0;
@@ -69,28 +60,25 @@ public class SettingsManager : MonoBehaviour
 
         langDropdown.value = selected;
         langDropdown.onValueChanged.AddListener(LocaleSelected);
-        selectRefImgsWindow.SetActive(IsDefaultRefImgs);
-        selectImgsWindow.SetActive(IsDefaultImgs);
-        breakingAnimationToggle.isOn = PlayerPrefs.GetInt("BreakingAnimation", 0) == 1;
-        yield return new WaitForSeconds(2);
-        placeTrackedImages = GetComponent<PlaceTrackedImages>();
-        print($"Place track: {placeTrackedImages}");
     }
+
+    public void BreakingAnimationToggleChanged(bool value)
+    => PlayerPrefs.SetInt("BreakingAnimation", Convert.ToInt32(value));
+
+    public void Quit() => Application.Quit();
+
+    public void SwitchVisibility() => menu.SetActive(!menu.activeSelf);
+
+    public void SwitchDebug() => debug.SetActive(!debug.activeSelf);
 
     static void LocaleSelected(int index)
-    {
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
-    }
+    => LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
 
     public void OpenRefBrowser()
-    {
-        StartCoroutine(ShowLoadRefDialogCoroutine());
-    }
+    => StartCoroutine(ShowLoadRefDialogCoroutine());
 
     public void OpenPicBrowser()
-    {
-        StartCoroutine(ShowLoadPicDialogCoroutine());
-    }
+    => StartCoroutine(ShowLoadPicDialogCoroutine());
 
     public void ResetToDefaults()
     {
@@ -105,7 +93,6 @@ public class SettingsManager : MonoBehaviour
     {
         PlayerPrefs.DeleteKey("LocalScale");
         print("Removed LocalScale");
-
     }
 
     IEnumerator ShowLoadRefDialogCoroutine()
