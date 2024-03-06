@@ -29,11 +29,6 @@ public class PlaceTrackedImages : MonoBehaviour
     private readonly Dictionary<string, GameObject> _instantiatedPrefabs = new Dictionary<string, GameObject>();
 
 
-    void OnEnable()
-    {
-        _trackedImagesManager.trackedImagesChanged += OnTrackedImagesChanged;
-    }
-
     void OnDisable()
     {
         _trackedImagesManager.trackedImagesChanged -= OnTrackedImagesChanged;
@@ -46,7 +41,7 @@ public class PlaceTrackedImages : MonoBehaviour
         _trackedImagesManager = GetComponent<ARTrackedImageManager>();
         yield return new WaitForSeconds(3);
         if (arPrefabs.Length == 0) throw new Exception("There is no prefab to set. Application cannot work");
-        OnEnable();
+        _trackedImagesManager.trackedImagesChanged += OnTrackedImagesChanged;
         LoadReferenceImages();
     }
 
@@ -72,7 +67,6 @@ public class PlaceTrackedImages : MonoBehaviour
             // print(filesFound);
             // print($"Can I Add images? {_trackedImagesManager.descriptor.supportsMutableLibrary}");
         }
-
         else
         {
             DirectoryInfo dataDir = new DirectoryInfo(referenceImagesPath);
