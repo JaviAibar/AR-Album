@@ -11,14 +11,14 @@ public class AlbumController : MonoBehaviour
 {
     private string[] spritesPaths;
     private Sprite[] sprites;
-    public SpriteRenderer spriteRenderer;
-    public Button prevButton;
-    public Button nextButton;
-    public int spriteIndex;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Button prevButton;
+    [SerializeField] private Button nextButton;
+    [SerializeField] private int spriteIndex;
     public bool IsLastSprite => spriteIndex == spritesPaths.Length - 1;
     public bool IsFirstSprite => spriteIndex == 0;
     private MaskAnimation _maskAnimation;
-    public TMP_Text txt;
+    [SerializeField] private TMP_Text txt;
     private string imagesPath;
 
     private void Start()
@@ -110,13 +110,13 @@ public class AlbumController : MonoBehaviour
     private Sprite LoadSpritefromPath(string imgPath)
     {
         //Converts desired path into byte array
-        byte[] pngBytes = Array.Empty<byte>();
+        byte[] pngBytes;// = Array.Empty<byte>();
         //Converts desired path into byte array
         if (imagesPath == "Default") pngBytes = BetterStreamingAssets.ReadAllBytes(imgPath);
         else pngBytes = File.ReadAllBytes(imgPath);
 
         //Creates texture and loads byte array data to create image
-        Texture2D tex = new Texture2D(2, 2);
+        Texture2D tex = new(2, 2);
         tex.LoadImage(pngBytes);
 
         //Creates a new Sprite based on the Texture2D
@@ -172,7 +172,7 @@ public class AlbumController : MonoBehaviour
 
     private async void LoadTheRestOfImagesAsync()
     {
-        List<Task> tasks = new List<Task>();
+        List<Task> tasks = new();
         for (uint i = 0; i < sprites.Length; i++)
         {
             if (i == spriteIndex) continue;
@@ -190,13 +190,13 @@ public class AlbumController : MonoBehaviour
     private async Task<Sprite> LoadSpritefromPathAsync(string imgPath)
     {
         //Converts desired path into byte array
-        byte[] pngBytes = Array.Empty<byte>();
+        byte[] pngBytes;// = Array.Empty<byte>();
         //Converts desired path into byte array
         if (imagesPath == "Default") pngBytes = await BetterStreamingAssets.ReadAllBytesAsync(imgPath);
         else pngBytes = await File.ReadAllBytesAsync(imgPath);
 
         //Creates texture and loads byte array data to create image
-        Texture2D tex = new Texture2D(2, 2);
+        Texture2D tex = new(2, 2);
         tex.LoadImage(pngBytes);
 
         //Creates a new Sprite based on the Texture2D

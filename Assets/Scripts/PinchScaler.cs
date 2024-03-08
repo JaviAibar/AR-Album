@@ -6,10 +6,11 @@ public class PinchScaler : MonoBehaviour
     private float initialDistance;
     private Vector3 initialScale;
     private float currentDistance;
-    public float minScale;
-    public float maxScale;
-    public float sensibility;
-    public Transform targetTransform;
+
+    [SerializeField] private float minScale;
+    [SerializeField] private float maxScale;
+    [SerializeField] private float sensibility;
+    [SerializeField] private Transform targetTransform;
 
     void Start()
     {

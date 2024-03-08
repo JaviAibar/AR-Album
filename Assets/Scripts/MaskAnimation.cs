@@ -3,13 +3,13 @@ using UnityEngine;
 public class MaskAnimation : MonoBehaviour
 {
     private SpriteMask mask;
-    public Sprite[] sprites;
+    [SerializeField] private Sprite[] sprites;
     private int index = 0;
 
-    public int frames = 30;
+    [SerializeField] private int frames = 30;
 
-    public float timer = 0;
-    public float speed = 5;
+    [SerializeField] private float timer = 0;
+    [SerializeField] private float speed = 5;
     public bool BreakingEffectOn => PlayerPrefs.GetInt("BreakingAnimation", 0) == 1;
 
     private void Awake()
@@ -57,7 +57,7 @@ public class MaskAnimation : MonoBehaviour
         if (!spriteRendererSprite) return;
         Rect tex = spriteRendererSprite.textureRect;
         var maskTexture = sprites[0].texture;
-        Vector3 newLocalScale = new Vector3(tex.width / maskTexture.width,
+        Vector3 newLocalScale = new(tex.width / maskTexture.width,
             tex.height / maskTexture.height, 1);
 
         UpdateSize(newLocalScale);
