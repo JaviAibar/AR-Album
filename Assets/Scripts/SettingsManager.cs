@@ -9,13 +9,13 @@ using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
-    public GameObject menu;
-    public TMP_Dropdown langDropdown;
-    public GameObject debug;
-    public PlaceTrackedImages placeTrackedImages;
-    public GameObject selectRefImgsWindow;
-    public GameObject selectImgsWindow;
-    public Toggle breakingAnimationToggle;
+    [SerializeField] private GameObject menu;
+    [SerializeField] private TMP_Dropdown langDropdown;
+    [SerializeField] private GameObject debug;
+    [SerializeField] private PlaceTrackedImages placeTrackedImages;
+    [SerializeField] private GameObject selectRefImgsWindow;
+    [SerializeField] private GameObject selectImgsWindow;
+    [SerializeField] private Toggle breakingAnimationToggle;
     public bool IsDefaultRefImgs => PlayerPrefs.GetString("ReferencesFolder", "Default") == "Default";
     public bool IsDefaultImgs => PlayerPrefs.GetString("PicturesFolder", "Default") == "Default";
 

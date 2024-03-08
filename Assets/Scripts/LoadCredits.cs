@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class LoadCredits : MonoBehaviour
 {
-    public MarkdownRenderer markdownRenderer;
+    [SerializeField]
+    private MarkdownRenderer markdownRenderer;
 
     void Start()
     {

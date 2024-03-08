@@ -1,5 +1,3 @@
-// See https://youtu.be/gpaq5bAjya8  for accompanying tutorial and usage!
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,9 +22,11 @@ public class PlaceTrackedImages : MonoBehaviour
 
     // List of prefabs to instantiate - these should be named the same
     // as their corresponding 2D images in the reference image library 
-    public GameObject[] arPrefabs;
+    [SerializeField]
+    private GameObject[] arPrefabs;
 
-    private readonly Dictionary<string, GameObject> _instantiatedPrefabs = new Dictionary<string, GameObject>();
+    private readonly Dictionary<string, GameObject> _instantiatedPrefabs = new();
+
 
 
     void OnDisable()
@@ -69,7 +69,7 @@ public class PlaceTrackedImages : MonoBehaviour
         }
         else
         {
-            DirectoryInfo dataDir = new DirectoryInfo(referenceImagesPath);
+            DirectoryInfo dataDir = new(referenceImagesPath);
             try
             {
                 paths = dataDir.GetFiles().Select(e => e.FullName).ToArray();
@@ -123,7 +123,7 @@ public class PlaceTrackedImages : MonoBehaviour
         print(
                 $"is my texture ({imgPath}) supported ({tex.format})? {mutableRuntimeReferenceImageLibrary.IsTextureFormatSupported(tex.format)}");
         print(
-            $"Job finished with result {addReferenceImageJobState.status.ToString()}!({mutableRuntimeReferenceImageLibrary.count})");
+            $"Job finished with result {addReferenceImageJobState.status}!({mutableRuntimeReferenceImageLibrary.count})");
         print($"Imagenes de referencia: {_trackedImagesManager.referenceLibrary.count}");
         print($"trackImageManager.trackables.count ({_trackedImagesManager.trackables.count})");
         print($"_trackedImagesManager.referenceLibrary[0].name ({_trackedImagesManager.referenceLibrary[0].name})");
@@ -192,12 +192,12 @@ public class PlaceTrackedImages : MonoBehaviour
 
     private Texture2D GetTexturefromPath(string imgPath)
     {
-        byte[] pngBytes = Array.Empty<byte>();
+        byte[] pngBytes; // = Array.Empty<byte>();
 
         if (referenceImagesPath == "Default") pngBytes = BetterStreamingAssets.ReadAllBytes(imgPath);
         else pngBytes = File.ReadAllBytes(imgPath);
 
-        Texture2D tex = new Texture2D(2, 2);
+        Texture2D tex = new(2, 2);
         tex.LoadImage(pngBytes);
         print($"[{imgPath}] {tex.width} x {tex.height}");
         return tex;

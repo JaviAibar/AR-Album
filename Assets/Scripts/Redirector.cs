@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Redirector : MonoBehaviour
 {
-    public TMP_Text txt;
+    [SerializeField] private TMP_Text txt;
 
     private void OnEnable()
     {
